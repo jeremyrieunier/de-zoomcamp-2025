@@ -1,2 +1,2 @@
 # Data Engineering Zoomcamp 2025
-This repo contains files and my notes for the [Data Engineering Zoomcap](https://github.com/DataTalksClub/data-engineering-zoomcamp) by [DataTalks.Club](https://datatalks.club/).
+This repo contains files and my notes for the [Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp) by [DataTalks.Club](https://datatalks.club/).
