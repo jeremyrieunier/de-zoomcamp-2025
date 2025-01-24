@@ -5,8 +5,8 @@ print("Connecting to database")
 engine = create_engine('postgresql://postgres:postgres@localhost:5433/ny_taxi')
 
 # # Drop table if exists
-# drop_taxi_trips = "DROP TABLE IF EXISTS green_taxi_trips_2019_10;"
-# drop_taxi_zone = "DROP TABLE IF EXISTS taxi_zone_lookup;"
+drop_taxi_trips = "DROP TABLE IF EXISTS green_taxi_trips_2019_10;"
+drop_taxi_zone = "DROP TABLE IF EXISTS taxi_zone_lookup;"
 
 # SQL statement to create taxi trips table
 create_table_taxi_trips = """
