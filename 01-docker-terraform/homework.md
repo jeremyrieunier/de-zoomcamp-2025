@@ -102,12 +102,12 @@ Query used to answer the question:
 ```sql
 select
 	case
-		when trip_distance <= 1 then '1 mile'
-       	when trip_distance > 1 and trip_distance <= 3 then '1-3 miles' 
-       	when trip_distance > 3 and trip_distance <= 7 then '3-7 miles'
-       	when trip_distance > 7 and trip_distance <= 10 then '7-10 miles'
-       	else 'Over 10 miles'
-   	end as distance_category,
+    when trip_distance <= 1 then '1 mile'
+    when trip_distance > 1 and trip_distance <= 3 then '1-3 miles' 
+    when trip_distance > 3 and trip_distance <= 7 then '3-7 miles'
+    when trip_distance > 7 and trip_distance <= 10 then '7-10 miles'
+    else 'Over 10 miles'
+  end as distance_category,
 	count(*) as number_of_trips
 from green_taxi_trips_2019_10
 where date(lpep_pickup_datetime) >= '2019-10-01' 
