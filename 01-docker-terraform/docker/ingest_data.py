@@ -23,7 +23,7 @@ try:
         chunk.columns = chunk.columns.str.lower()
 
         # Insert chunk into the database
-        chunk.to_sql(name="green_taxi_trips_2019_10", con=engine, if_exists='append',index=False)
+        chunk.to_sql(name="data_sources/green_taxi_trips_2019_10", con=engine, if_exists='append',index=False)
         
         # Record end time and calculate duration
         t_end = time()
@@ -35,7 +35,7 @@ except Exception as e:
 
 try:
     print("Starting taxi zone lookup data ingestion")
-    df = pd.read_csv('taxi_zone_lookup.csv')
+    df = pd.read_csv('data_sources/taxi_zone_lookup.csv')
     df.columns = df.columns.str.lower()
     df.to_sql(name="taxi_zone_lookup", con=engine, if_exists="append", index=False)
 
