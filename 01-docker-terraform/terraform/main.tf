@@ -9,5 +9,20 @@ terraform {
 
 provider "google" {
     project     = "terraform-demo-448914"
-    region      = "europe-southwest1-a"
+    region      = "europe-southwest"
+}
+
+resource "google_storage_bucket" "demo-bucket" {
+    name          = "terraform-demo-448914-terra-bucket"
+    location      = "EU"
+    force_destroy = true
+
+    lifecycle_rule {
+        condition {
+            age = 1
+        }
+        action {
+            type = "AbortIncompleteMultipartUpload"
+        }
+    }
 }
