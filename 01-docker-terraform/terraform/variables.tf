@@ -23,11 +23,6 @@ variable "storage_class" {
     default     = "STANDARD"
 }
 
-variable "bucket_name" {
-    description = "GCS bucket name"
-    type        = string
-    default     = "terra-bucket"
-}
 
 variable "bq_dateset_name" {
     description = "My BQ data set name"
