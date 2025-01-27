@@ -9,7 +9,7 @@ engine = create_engine('postgresql://postgres:postgres@localhost:5433/ny_taxi')
 try:
     print("Starting green taxi trips data ingestion")
     # Read CSV in chunks to handle large files efficiently using an iterator object
-    df_iter = pd.read_csv('green_tripdata_2019-10.csv.gz', iterator=True, chunksize=100000)
+    df_iter = pd.read_csv('data_sources/green_tripdata_2019-10.csv.gz', iterator=True, chunksize=100000)
 
     # Iterate through chunks
     for i, chunk in enumerate(df_iter):
@@ -23,7 +23,7 @@ try:
         chunk.columns = chunk.columns.str.lower()
 
         # Insert chunk into the database
-        chunk.to_sql(name="data_sources/green_taxi_trips_2019_10", con=engine, if_exists='append',index=False)
+        chunk.to_sql(name="green_taxi_trips_2019_10", con=engine, if_exists='append',index=False)
         
         # Record end time and calculate duration
         t_end = time()

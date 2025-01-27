@@ -8,7 +8,7 @@ docker/
 ├── practice/             # Docker practice exercises
 ├── create_table.py       # Python script to create required database tables
 ├── docker-compose.yaml   # Defines services (Postgres + pgAdmin)
-└── ingest_data.py        # Python script to loads data into Postgres
+└── ingest_data.py        # Python script to load data into Postgres
 ```
 
 ## Key Components
@@ -63,8 +63,8 @@ GCS bucket with:
 BigQuery dataset with environment labels
 - Configuration Files
 
-`main.tf`: Defines GCP resources
-`variables.tf`: Configures [Terraform variables](https://developer.hashicorp.com/terraform/language/values/variables) like:
+- `main.tf`: Defines GCP resources
+- `variables.tf`: Configures [Terraform variables](https://developer.hashicorp.com/terraform/language/values/variables) like:
 - Project ID
 - Region/Location
 - Storage class

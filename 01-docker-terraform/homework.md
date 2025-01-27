@@ -5,7 +5,7 @@ Run docker with the `python:3.12.8` image in an interactive mode, use the entryp
 
 What's the version of `pip` in the image?
 
-- <mark>24.3.1</mark>
+- **24.3.1**
 - 24.2.1
 - 23.3.1
 - 23.2.1
@@ -61,7 +61,7 @@ volumes:
 - localhost:5432
 - db:5433
 - postgres:5432
-- <mark>db:5432</mark>
+- **db:5432**
 
 The docker-compose.yaml file defines two services:
 
@@ -69,16 +69,14 @@ PostgreSQL Database Service (`db`):
 - Uses [Postres 17 Alpine](https://github.com/docker-library/postgres/blob/172544062d1031004b241e917f5f3f9dfebc0df5/17/alpine3.20/Dockerfile) Alpine image
 - Internal container port: `5432`
 - Host machine port mapping: `5433`
-- Contains database configuration (users, passwords, etc.)
 
 pgAdmin Service (pgadmin):
 - Internal container port: `80`
 - Host machine port mapping: `8080`
 - Contains admin interface configuration
 
-When connecting from pgAdmin to Postgres within Docker's network
+When containers are launched through docker-compose, they communicate using internal DNS resolution where service names act as hostnames. Therefore, pgAdmin should use **db:5432** to connect, using the service name `db` and internal port `5432`.
 
-The answer is then the service name `db` with the post `5432`.
 
 ## Question 3. Trip Segmentation Count
 During the period of October 1st 2019 (inclusive) and November 1st 2019 (exclusive), how many trips, respectively, happened:
@@ -92,7 +90,7 @@ During the period of October 1st 2019 (inclusive) and November 1st 2019 (exclusi
 Answers:
 
 - 104,802; 197,670; 110,612; 27,831; 35,281
-- <mark>104,802; 198,924; 109,603; 27,678; 35,189</mark>
+- **104,802; 198,924; 109,603; 27,678; 35,189**
 - 104,793; 201,407; 110,612; 27,831; 35,281
 - 104,793; 202,661; 109,603; 27,678; 35,189
 - 104,838; 199,013; 109,645; 27,688; 35,202
@@ -134,7 +132,7 @@ Tip: For every day, we only care about one single trip with the longest distance
 - 2019-10-11
 - 2019-10-24
 - 2019-10-26
-- <mark>2019-10-31</mark>
+- **2019-10-31**
 
 Query used to anwer the question:
 
@@ -160,7 +158,7 @@ Which were the top pickup locations with over 13,000 in `total_amount` (across a
 
 Consider only `lpep_pickup_datetime` when filtering by date.
 
-- <mark>East Harlem North, East Harlem South, Morningside Heights</mark>
+- **East Harlem North, East Harlem South, Morningside Heights**
 - East Harlem North, Morningside Heights
 - Morningside Heights, Astoria Park, East Harlem South
 - Bedford, East Harlem North, Astoria Park
@@ -191,12 +189,8 @@ Output:
 ## Question 6. Largest tip
 For the passengers picked up in October 2019 in the zone named "East Harlem North" which was the drop off zone that had the largest tip?
 
-Note: it's `ti`p , not `trip`
-
-We need the name of the zone, not the ID.
-
 - Yorkville West
-- <mar>JFK Airport</mark>
+- **JFK Airport**
 - East Harlem North
 - East Harlem South
 
@@ -236,5 +230,11 @@ Answers:
 - terraform import, terraform apply -y, terraform destroy
 - teraform init, terraform plan -auto-apply, terraform rm
 - terraform init, terraform run -auto-approve, terraform destroy
-- terraform init, terraform apply -auto-approve, terraform destroy
+- **terraform init, terraform apply -auto-approve, terraform destroy**
 - terraform import, terraform apply -y, terraform rm
+
+The correct answer is `terraform init, terraform apply -auto-approve, terraform destroy`
+- `terraform init` downloads provider plugins and sets up backend
+- `terraform apply -auto-approve` generates and executes changes without manual confirmation
+- `terraform destroy` removes all resources managed by terraform
+
