@@ -37,7 +37,7 @@ services:
             url: jdbc:postgresql://postgres:5432/postgres_zoomcamp
             driverClassName: org.postgresql.Driver
             username: zoomcamp
-            password: z00c4mp
+            password: z00mc4mp
         kestra:
           server:
             basicAuth:
