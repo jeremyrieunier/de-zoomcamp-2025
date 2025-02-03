@@ -1,0 +1,45 @@
+# Extracts data from an api, use that data into a python script and then executes an SQL query to generate a downloadable csv file
+id: dummy_json_getting_started
+namespace: company.team
+
+inputs:
+  - id: api_url
+    type: STRING
+    defaults: https://dummyjson.com/products
+
+triggers:
+  - id: schedule_trigger
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: 0 10 * * *
+
+tasks:
+  - id: api
+    type: io.kestra.plugin.core.http.Request
+    uri: "{{ inputs.api_url }}"
+
+  - id: python
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    beforeCommands:
+      - pip install polars
+    warningOnStdErr: false
+    outputFiles:
+      - "products.csv"
+    script: |
+      import polars as pl
+      data = {{outputs.api.body | jq('.products') | first}}
+      df = pl.from_dicts(data)
+      df.glimpse()
+      df.select(["sku", "title", "price", "stock", "brand"]).write_csv("products.csv")
+
+  - id: sqlQuery
+    type: io.kestra.plugin.jdbc.duckdb.Query
+    inputFiles:
+      in.csv: "{{ outputs.python.outputFiles['products.csv'] }}"
+    sql: |
+      select brand, round(avg(price), 2) as avg_price
+      from read_csv_auto('{{ workingDir }}/in.csv', header=True)
+      where brand is not null
+      group by brand
+      order by avg_price desc;
+    store: true
