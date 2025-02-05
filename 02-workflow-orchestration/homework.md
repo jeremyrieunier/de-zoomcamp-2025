@@ -6,7 +6,7 @@
 - 364.7 MB
 - 692.6 MB
 
-![The ucompressed file size of the file yellow_tripdata_2020-12.csv is 128.3mb](images/kestra-yellow-tripdata-2020-12.png)
+![The uncompressed file size of the file yellow_tripdata_2020-12.csv is 128.3mb](images/kestra-yellow-tripdata-2020-12.png)
 
 ## Question 2: What is the rendered value of the variable `file` when the inputs `taxi` is set to `green`, `year` is set to `2020`, and `month` is set to `04` during execution?
 - `{{inputs.taxi}}_tripdata_{{inputs.year}}-{{inputs.month}}.csv` 
@@ -30,6 +30,11 @@ from public.yellow_tripdata
 where filename like 'yellow_tripdata_2020%';
 ```
 
+Output:
+| count | 
+| ----- | 
+| 24648499 | 
+
 ## Question 4: How many rows are there for the `Green` Taxi data for all CSV files in the year 2020?
 - 5,327,301
 - 936,199
@@ -44,11 +49,15 @@ from public.green_tripdata
 where filename like 'green_tripdata_2020%';
 ```
 
+Output:
+| count | 
+| ----- | 
+| 1734051 | 
 
 ## Question 5: How many rows are there for the `Yellow` Taxi data for the March 2021 CSV file?
 - 1,428,092
 - 706,911
-- 1,925,152
+- **1,925,152**
 - 2,561,031
 
 SQL query used to answer this question:
@@ -58,6 +67,11 @@ select count(unique_row_id)
 from public.yellow_tripdata
 where filename = 'yellow_tripdata_2021-03.csv';
 ```
+
+Output:
+| count | 
+| ----- | 
+| 1925152 | 
 
 ## Question 6: How would you configure the timezone to New York in a Schedule trigger?
 - Add a `timezone` property set to `EST` in the `Schedule` trigger configuration  
