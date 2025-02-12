@@ -108,7 +108,7 @@ Query used to create the table:
 ```sql
 create or replace table `zoomcamp-450511.nyc_taxi.yellow_tripdata_2024_partitioned_clustered`
 partition by date(tpep_dropoff_datetime)
-cluster by VendorID AS
+cluster by VendorID as
 select * from `zoomcamp-450511.nyc_taxi.external_yellow_tripdata_2024`;
 ```
 
