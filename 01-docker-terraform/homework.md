@@ -236,5 +236,6 @@ Answers:
 The correct answer is `terraform init, terraform apply -auto-approve, terraform destroy`
 - `terraform init` downloads provider plugins and sets up backend
 - `terraform apply -auto-approve` generates and executes changes without manual confirmation
-- `terraform destroy` removes all resources managed by terraform
+- `terraform destroy`
+ removes all resources managed by terraform
 
