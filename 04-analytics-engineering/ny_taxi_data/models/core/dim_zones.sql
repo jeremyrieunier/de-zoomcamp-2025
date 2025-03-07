@@ -5,7 +5,7 @@
 }}
 
 select
-    locationid as location_id,
+    location_id,
     borough,
     zone,
     -- Replace Boro Zone by Green Zone since it's only served by Green Taxis
